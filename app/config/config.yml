@@ -1,0 +1,53 @@
+app:
+  enable_sample_data_mode: True 
+  logo_url: https://drive.google.com/uc?id=1wdIbZ6_nrCe2YK-G9pLj1q28LUBJU-9b
+  #https://placekitten.com/150/150
+  name: Metrics Explorer
+  sidebar_links: 
+    - label: Metabase Dashboards
+      url: https://www.fleetio.com
+    - label: Data Team Request
+      url: https://www.fleetio.com
+    - label: Data Team Notion
+      url: https://www.fleetio.com
+  how_to_videos:
+    - name: How to use Metrics Explorer
+      url: https://www.youtube.com/embed/VhX4pAzAWuA?si=dzyo5hGXTXQTuhqj
+    - name: How to use Metrics Explorer
+      url: https://www.youtube.com/embed/VhX4pAzAWuA?si=dzyo5hGXTXQTuhqj
+
+home_page:
+  key_metrics:
+    - category: sample
+      name: won_opps
+    - category: sample
+      name: closed_opps
+    - category: sample
+      name: win_rate
+    - category: sample
+      name: won_revenue
+    - category: sample
+      name: average_sales_cycle
+    - category: sample
+      name: average_sale_price
+
+
+metric_categories:
+  - name: sample
+    label: Sample
+    description: Sample metrics for demo purposes.
+    sources:
+      - metric_map
+    key_metrics:
+      - category: sample
+        name: won_opps
+      - category: sample
+        name: closed_opps
+      - category: sample
+        name: win_rate
+      - category: sample
+        name: won_revenue
+      - category: sample
+        name: average_sales_cycle
+      - category: sample
+        name: average_sale_price

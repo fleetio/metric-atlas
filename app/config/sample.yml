@@ -1,0 +1,216 @@
+metrics:
+  - name: won_opps
+    type: count
+    label: Won Opportunities
+    category: sample
+    schema: sales
+    model: opportunities
+    sql: COUNT_IF(metric_source.is_won = TRUE)
+    timestamp: close_date
+    description: The number of new bookings/won opportunities for a given timeframe.
+    business_owner:
+      name: Sales Leader
+      email: sales_leader@fleetio.com
+    data_team_owner:
+      name: Analytics Engineer
+      email: analytics_engineer@fleetio.com
+    time_grains: 
+      - month
+      - week
+      - quarter
+      - year
+      - day
+    dimensions:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+    filters:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+
+  - name: won_revenue
+    type: currency
+    label: Won Revenue
+    category: sample
+    schema: sales
+    model: opportunities
+    sql: SUM(CASE WHEN metric_source.is_won = TRUE THEN metric_source.revenue_dollars ELSE 0 END)
+    timestamp: close_date
+    description: Total revenue of opportunties in a given time frame based on close date.
+    business_owner:
+      name: Sales Leader
+      email: sales_leader@fleetio.com
+    data_team_owner:
+      name: Analytics Engineer
+      email: analytics_engineer@fleetio.com
+    time_grains: 
+      - month
+      - week
+      - quarter
+      - year
+      - day
+    dimensions:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+    filters:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+
+  - name: closed_opps
+    type: count
+    label: Closed Opportunities
+    category: sample
+    schema: sales
+    model: opportunities
+    sql: COUNT_IF(metric_source.is_closed = TRUE)
+    timestamp: close_date
+    description: The number of new closed opportunities for a timeframe.
+    business_owner:
+      name: Sales Leader
+      email: sales_leader@fleetio.com
+    data_team_owner:
+      name: Analytics Engineer
+      email: analytics_engineer@fleetio.com
+    time_grains: 
+      - month
+      - week
+      - quarter
+      - year
+      - day
+    dimensions:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+    filters:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+
+  - name: win_rate
+    type: percentage
+    label: Win Rate
+    category: sample
+    schema: sales
+    model: opportunities
+    sql: DIV0(COUNT_IF(metric_source.is_won = TRUE), COUNT_IF(metric_source.is_closed = TRUE))
+    timestamp: close_date
+    description: The percentage of opportunities that were won for a given timeframe.
+    business_owner:
+      name: Sales Leader
+      email: sales_leader@fleetio.com
+    data_team_owner:
+      name: Analytics Engineer
+      email: analytics_engineer@fleetio.com
+    time_grains: 
+      - month
+      - week
+      - quarter
+      - year
+      - day
+    dimensions:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+    filters:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+
+  - name: average_sale_price
+    type: currency
+    label: Average Sale Price
+    category: sample
+    schema: sales
+    model: opportunities
+    sql: DIV0(SUM(CASE WHEN metric_source.is_won = TRUE THEN metric_source.revenue_dollars ELSE 0 END), COUNT_IF(metric_source.is_won = TRUE))
+    timestamp: close_date
+    description: Average revenue of a closed/won deal for a given timeframe.
+    business_owner:
+      name: Sales Leader
+      email: sales_leader@fleetio.com
+    data_team_owner:
+      name: Analytics Engineer
+      email: analytics_engineer@fleetio.com
+    time_grains: 
+      - month
+      - week
+      - quarter
+      - year
+      - day
+    dimensions:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+    filters:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+
+  - name: average_sales_cycle
+    type: count
+    label: Average Sale Cycle
+    category: sample
+    schema: sales
+    model: opportunities
+    sql: AVG(CASE WHEN metric_source.is_won THEN DATE_DIFF('day',metric_source.created_at, metric_source.close_date) END)
+    timestamp: close_date
+    description: Average number of days between when a won opporunity is created and closed.
+    business_owner:
+      name: Sales Leader
+      email: sales_leader@fleetio.com
+    data_team_owner:
+      name: Analytics Engineer
+      email: analytics_engineer@fleetio.com
+    time_grains: 
+      - month
+      - week
+      - quarter
+      - year
+      - day
+    dimensions:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
+    filters:
+      - name: industry
+        label: Industry
+      - name: market_segment
+        label: Market Segment
+      - name: sales_rep_name
+        label: Sales Rep
